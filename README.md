@@ -1,4 +1,4 @@
-# expert-pancake
+# expert-pancake 
 
 ## Advanced Motion Detection Using DBSCAN and K-Means Algorithms
 
@@ -19,11 +19,11 @@ This project leverages DBSCAN and K-Means clustering algorithms for advanced mot
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/RogueBaker01/potential-barnacle.git
+    git clone https://github.com/RogueBaker01/expert-pancake.git
     ```
 2. Navigate to the project directory:
     ```bash
-    cd potential-barnacle
+    cd expert-pancake
     ```
 3. Install the required dependencies:
     ```bash
