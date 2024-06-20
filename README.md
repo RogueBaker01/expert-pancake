@@ -19,7 +19,7 @@ This project leverages DBSCAN and K-Means clustering algorithms for advanced mot
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/yourusername/potential-barnacle.git
+    git clone https://github.com/RogueBaker01/potential-barnacle.git
     ```
 2. Navigate to the project directory:
     ```bash
@@ -32,11 +32,11 @@ This project leverages DBSCAN and K-Means clustering algorithms for advanced mot
 
 ### Usage
 
-To run the project, you can use the `Main2.py` script, which offers a menu-driven interface for processing video files and detecting motion.
+To run the project, you can use the `Main.py` script, which offers a menu-driven interface for processing video files and detecting motion.
 
 1. Run the script:
     ```bash
-    python Main2.py
+    python Main.py
     ```
 2. Follow the on-screen prompts to select options and input paths.
 
