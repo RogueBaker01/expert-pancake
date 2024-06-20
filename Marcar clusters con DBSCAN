@@ -1,0 +1,45 @@
+import numpy as np
+import cv2
+from sklearn.cluster import DBSCAN
+import matplotlib.pyplot as plt
+
+image_path = "path_of_the_image.png"
+image = cv2.imread(image_path, cv2.IMREAD_GRAYSCALE)
+image = cv2.flip(image,0)
+
+_, binary_image = cv2.threshold(image, 200, 255, cv2.THRESH_BINARY)
+
+white_points = np.column_stack(np.where(binary_image == 255))
+
+db = DBSCAN(eps=5, min_samples=10).fit(white_points)
+labels = db.labels_
+
+n_clusters = len(set(labels)) - (1 if -1 in labels else 0)
+n_noise = list(labels).count(-1)
+
+print(f'Número de clusters: {n_clusters}')
+print(f'Número de puntos de ruido: {n_noise}')
+
+plt.figure(figsize = (8,6))
+plt.imshow(image, cmap = 'gray')
+
+unique_labels = set(labels)
+colors = [plt.cm.Spectral(each) for each in np.linspace(0, 1, len(unique_labels))]
+
+for k, col in zip(unique_labels, colors):
+    if k == -1:
+        continue
+
+    class_member_mask = (labels == k)
+    xy = white_points[class_member_mask]
+    plt.plot(xy[:, 1], xy[:, 0], 'o', markerfacecolor=tuple(col),
+             markeredgecolor='k', markersize=6)
+
+    cluster_center = np.mean(xy, axis=0)
+    cluster_radius = np.linalg.norm(xy - cluster_center, axis=1).max()
+    circle = plt.Circle((cluster_center[1], cluster_center[0]), cluster_radius, color=tuple(col), fill=False, linewidth=2)
+    plt.gca().add_patch(circle)
+
+plt.title(f'Clusters con DBSCAN: {n_clusters}')
+plt.gca().invert_yaxis()
+plt.show()

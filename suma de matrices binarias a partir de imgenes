@@ -1,0 +1,33 @@
+import os
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.image as mpimg
+
+folder_path = "path_of_the_folder_with_the_frames"
+
+output_image_path = 'path_of_the_image_save.png'
+
+summed_matrix = None
+count = 1
+
+for filename in os.listdir(folder_path):
+    if filename.endswith(".png"):
+        img_path = os.path.join(folder_path, filename)
+        img = mpimg.imread(img_path)
+        if img.ndim == 3:
+            img = img[:, :, 0]
+        binary_img = (img > 0.5).astype(int) 
+        
+        if summed_matrix is None: 
+            summed_matrix = np.zeros_like(binary_img, dtype=int)
+        
+        summed_matrix += binary_img
+        print(f"imagen #{count}")
+        count += 1
+
+print(summed_matrix)
+
+plt.imshow(summed_matrix, cmap='gray')
+plt.show()
+
+plt.imsave(output_image_path, summed_matrix, cmap='gray')
