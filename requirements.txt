@@ -1,0 +1,6 @@
+## requirements for the code
+
+opencv-python
+numpy
+scikit-learn
+matplotlib
